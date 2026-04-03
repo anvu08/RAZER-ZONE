@@ -1,0 +1,2533 @@
+/* ============================================================
+   1. THIẾT LẬP CHUNG (GLOBAL)
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #000;
+  color: white;
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+.logo img {
+  width: 50px;
+  height: auto;
+}
+
+/* ============================================================
+   2. THANH NAVBAR (NAVBAR LAYOUT & EFFECTS)
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  border-radius: 20px;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+
+  background: rgba(0, 0, 0,0.5);
+  backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(0, 255, 102, 0.5);
+  box-shadow: 0 1px 4px rgba(0, 255, 102, 0.3);
+
+  animation: electric-glow-slim 2s infinite alternate;
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item {
+  position: relative;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  padding: 8px 0;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-5px);
+  color: #00ff66;
+  text-shadow:
+    0 0 10px #00ff66,
+    0 0 20px #00ff66;
+}
+
+.nav-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #00ff66;
+  box-shadow: 0 0 10px #00ff66;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 100%;
+}
+
+.nav-item.active {
+  color: #00ff66;
+  font-weight: bold;
+}
+
+/* ============================================================
+   3. THANH TÌM KIẾM (SEARCH LOGIC)
+   ============================================================ */
+.search-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  order: -1;
+}
+
+#search-input {
+  width: 0;
+  opacity: 0;
+  border: none;
+  border-bottom: 2px solid #00ff66;
+  background: transparent;
+  color: white;
+  outline: none;
+  padding: 5px 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-wrapper.active #search-input {
+  width: 200px;
+  opacity: 1;
+  padding: 5px 15px;
+  margin-right: 15px;
+}
+
+.search-icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.search-icon:hover {
+  color: #00ff66;
+  transform: scale(1.1);
+}
+
+/* Container bổ sung cho logic search */
+.nav-container {
+  display: flex;
+  align-items: center; /* Quan trọng: Giúp tất cả item (Search, Cart, Menu) thẳng hàng */
+  flex-direction: row-reverse;
+  gap: 30px;
+  cursor: pointer;
+}
+
+.navbar li.active {
+  color: #00ff66;
+  text-shadow:
+    0 0 10px #00ff66,
+    0 0 20px #00ff66;
+  font-weight: bold;
+  transform: scale(1.1);
+}
+
+/* ============================================================
+   4. HERO SECTION (VIDEO & OVERLAY)
+   ============================================================ */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.9));
+}
+
+.content {
+  position: absolute;
+  text-align: center;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.content h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+
+.content p {
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+/* ============================================================
+   5. BUTTON STYLES (BUY NOW & INTERACTIVE BUTTONS)
+   ============================================================ */
+button {
+  padding: 12px 30px;
+  border: none;
+  background: #00ff66;
+  color: rgb(14, 43, 5);
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #00cc55;
+}
+
+/* Nút phong cách Uiverse.io */
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 13rem;
+  overflow: hidden;
+  height: 3rem;
+  background-size: 300% 300%;
+  cursor: pointer;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+  transition: 0.5s;
+  animation: gradient_301 5s ease infinite;
+  border: double 4px transparent;
+  background-image:
+    linear-gradient(#212121, #212121),
+    linear-gradient(
+      137.48deg,
+      #ffdb3b 10%,
+      #fe53bb 45%,
+      #8f51ea 67%,
+      #0044ff 87%
+    );
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+#container-stars {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.5s;
+  backdrop-filter: blur(1rem);
+  border-radius: 5rem;
+}
+
+strong {
+  z-index: 2;
+  font-family: "Avalors Personal Use";
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: #ffffff;
+  text-shadow: 0 0 4px white;
+}
+
+#glow {
+  position: absolute;
+  display: flex;
+  width: 12rem;
+}
+
+.circle {
+  width: 100%;
+  height: 30px;
+  filter: blur(2rem);
+  animation: pulse_3011 4s infinite;
+  z-index: -1;
+}
+
+.circle:nth-of-type(1) {
+  background: rgba(254, 83, 186, 0.636);
+}
+.circle:nth-of-type(2) {
+  background: rgba(142, 81, 234, 0.704);
+}
+
+.btn:hover #container-stars {
+  z-index: 1;
+  background-color: #212121;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn:active {
+  border: double 4px #fe53bb;
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  animation: none;
+}
+
+.btn:active .circle {
+  background: #fe53bb;
+}
+
+/* Stars Animation */
+#stars {
+  position: relative;
+  background: transparent;
+  width: 200rem;
+  height: 200rem;
+}
+
+#stars::after {
+  content: "";
+  position: absolute;
+  top: -10rem;
+  left: -100rem;
+  width: 100%;
+  height: 100%;
+  animation: animStarRotate 90s linear infinite;
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+}
+
+#stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 170%;
+  height: 500%;
+  animation: animStar 60s linear infinite;
+  background-image: radial-gradient(#ffffff 1px, transparent 1%);
+  background-size: 50px 50px;
+  opacity: 0.5;
+}
+
+/* Button Tooltip Tool (JaydipPrajapati1910) */
+.button {
+  --width: 100px;
+  --height: 35px;
+  --tooltip-height: 35px;
+  --tooltip-width: 90px;
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #00ff6685;
+  --tooltip-color: #fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
+  text-align: center;
+  border-radius: 0.45em;
+  font-family: "Arial";
+  transition: background 0.3s;
+}
+
+.button::before {
+  position: absolute;
+  content: attr(data-tooltip);
+  width: var(--tooltip-width);
+  height: var(--tooltip-height);
+  background-color: #555555;
+  font-size: 0.9rem;
+  color: #fff;
+  border-radius: 0.25em;
+  line-height: var(--tooltip-height);
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+  left: calc(50% - var(--tooltip-width) / 2);
+}
+
+.button::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #555;
+  left: calc(50% - 10px);
+  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+}
+
+.button::after,
+.button::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrapper,
+.text,
+.icon {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+}
+
+.text {
+  top: 0;
+}
+
+.text,
+.icon {
+  transition: top 0.5s;
+}
+
+.icon {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.button:hover {
+  background: #760a0a;
+}
+.button:hover .text {
+  top: -100%;
+}
+.button:hover .icon {
+  top: 0;
+}
+.button:hover:before,
+.button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+.button:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+}
+.button:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+/* ============================================================
+   6. SCROLL REVEAL ANIMATIONS (HIỆU ỨNG CUỘN)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  filter: blur(5px);
+  transition: all 1s ease-out;
+}
+
+.fade-up {
+  transform: translateY(50px);
+}
+.zoom-in {
+  transform: scale(0.8);
+}
+
+.reveal.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0) scale(1);
+}
+
+/* ============================================================
+   7. PRODUCT GRID & CARDS (DANH SÁCH SẢN PHẨM)
+   ============================================================ */
+.products {
+  padding: 100px 50px;
+  background: #000;
+  text-align: center;
+}
+
+.section-title {
+  color: #fff;
+  font-size: 35px;
+  letter-spacing: 5px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  padding: 40px 20px;
+  width: 350px;
+  border-radius: 15px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 80%;
+  margin-bottom: 20px;
+  transition: transform 0.4s ease;
+}
+
+.product-card h3 {
+  color: #00ff66;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.product-card p {
+  color: #888;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.product-card:hover {
+  background: rgba(0, 255, 102, 0.05);
+  border-color: #00ff66;
+  transform: translateY(-15px);
+  box-shadow: 0 10px 40px rgba(0, 255, 102, 0.1);
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+/* ============================================================
+   8. TECH SHOWCASE (THÔNG SỐ KỸ THUẬT)
+   ============================================================ */
+.tech-showcase {
+  background: radial-gradient(circle at center, #0a0a0a 0%, #000 70%);
+  padding: 100px 0;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
+
+.showcase-title h2 {
+  color: #00ff66;
+  letter-spacing: 8px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.showcase-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+  position: relative;
+}
+
+.main-product {
+  position: relative;
+  z-index: 2;
+}
+
+.floating-img {
+  width: 450px;
+  filter: drop-shadow(0 0 30px rgba(0, 255, 102, 0.3));
+  animation: float 4s ease-in-out infinite;
+}
+
+.glow-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: #00ff66;
+  filter: blur(150px);
+  opacity: 0.15;
+  z-index: -1;
+}
+
+.feature-box {
+  margin: 80px 0;
+  position: relative;
+}
+
+.feature-box h4 {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #888;
+}
+
+.count {
+  font-size: 40px;
+  font-weight: 900;
+  color: #00ff66;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* ============================================================
+   9. HEADSET & AUDIO SHOWCASE (SÓNG ÂM)
+   ============================================================ */
+.headset-showcase {
+  padding: 100px 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.acoustic-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.acoustic-visual {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headset-img {
+  width: 100%;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px #00ff66);
+}
+
+.wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #00ff66;
+  border-radius: 50%;
+  opacity: 0;
+  animation: wave-anim 3s infinite;
+}
+
+.wave:nth-child(2) {
+  animation-delay: 1s;
+}
+.wave:nth-child(3) {
+  animation-delay: 2s;
+}
+
+@keyframes wave-anim {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   10. CHROMA KEYBOARD SECTION (CẬP NHẬT)
+   ============================================================ */
+.chroma-section {
+  min-height: 100vh; /* Sử dụng min-height thay vì fix cứng height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Đưa tất cả vào giữa theo chiều dọc */
+  background: #000;
+  padding: 80px 20px;
+  gap: 50px; /* Tạo khoảng cách vàng giữa chữ và bàn phím */
+}
+
+.chroma-text {
+  text-align: center;
+  max-width: 750px;
+  z-index: 10;
+}
+
+.chroma-text h2 {
+  font-size: 2.8rem; /* Tăng kích thước tiêu đề */
+  color: #00ff66;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+}
+
+.chroma-text p {
+  font-size: 1.1rem;
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   11. LOGIN MODAL SYSTEM (RAZER ID)
+   ============================================================ */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(20, 20, 20, 0.8);
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #00ff66;
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+  width: 400px;
+  text-align: center;
+}
+
+.login-logo {
+  width: 60px;
+  margin-bottom: 20px;
+}
+
+.modal-content h2 {
+  color: #00ff66;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #555;
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+.input-group label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  color: #888;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus ~ label,
+.input-group input:valid ~ label {
+  top: -20px;
+  font-size: 12px;
+  color: #00ff66;
+}
+
+.input-group input:focus {
+  border-bottom: 1px solid #00ff66;
+  box-shadow: 0 1px 0 0 #00ff66;
+}
+
+.login-submit {
+  width: 100%;
+  background: #00ff66;
+  color: black;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-submit:hover {
+  background: #00cc55;
+  box-shadow: 0 0 15px #00ff66;
+  transform: scale(1.02);
+}
+
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: white;
+}
+
+.top-right-login {
+  position: fixed;
+  top: 25px;
+  right: 30px;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 102, 0.4);
+  border-radius: 4px;
+  color: #00ff66;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.top-right-login:hover {
+  background: rgba(0, 255, 102, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.5);
+  transform: translateY(-2px);
+  border-color: #00ff66;
+}
+
+.top-right-login:active {
+  transform: translateY(0);
+  box-shadow: 0 0 5px rgba(0, 255, 102, 0.8);
+}
+
+/* ============================================================
+   12. MOUSE EFFECTS (CURSOR & FIRE PARTICLES)
+   ============================================================ */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  transform: translateZ(-1px);
+}
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00ff66;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(0, 255, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 102, 0);
+  }
+}
+
+.button {
+  animation: pulse-green 2s infinite;
+}
+
+#fire-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.fire-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #00ff66;
+  border-radius: 50%;
+  box-shadow:
+    0 0 10px #00ff66,
+    0 0 20px #00ff66;
+  animation: fire-fade-out 0.3s ease-out forwards;
+}
+
+@keyframes fire-fade-out {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   13. FOOTER SECTION
+   ============================================================ */
+.razer-footer {
+  background: #000;
+  padding: 60px 0 20px;
+  border-top: 1px solid rgba(0, 255, 102, 0.1);
+  font-family: "Roboto", sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-logo img {
+  width: 50px;
+  filter: grayscale(1) brightness(0.8);
+  transition: 0.3s;
+}
+
+.footer-logo:hover img {
+  filter: grayscale(0) drop-shadow(0 0 10px #00ff66);
+}
+
+.footer-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.footer-links a {
+  color: #888;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #00ff66;
+  text-shadow: 0 0 10px #00ff66;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  text-decoration: none;
+  font-size: 10px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.social-link:hover {
+  border-color: #00ff66;
+  color: #00ff66;
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  margin-top: 50px;
+  text-align: center;
+  position: relative;
+}
+
+.footer-bottom p {
+  color: #444;
+  font-size: 11px;
+  margin-bottom: 20px;
+}
+
+.footer-line {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff66, transparent);
+  opacity: 0.3;
+}
+
+/* ============================================================
+   14. MOBILE RESPONSIVE (TỐI ƯU DI ĐỘNG)
+   ============================================================ */
+@media (max-width: 900px) {
+  .showcase-container {
+    flex-direction: column;
+  }
+  .floating-img {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .showcase-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .floating-img {
+    width: 250px;
+  }
+  .top-right-login {
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+  .navbar {
+    width: 95%;
+    padding: 10px 15px;
+  }
+}
+.btn-link {
+  color: #00ff66; /* Màu xanh Razer */
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.btn-link:hover {
+  border-bottom: 1px solid #00ff66;
+  text-shadow: 0 0 10px #00ff66;
+}
+/* Đoạn này điều chỉnh phần hiện ra khi hover */
+.button[data-tooltip]:hover::before {
+  content: attr(data-tooltip);
+  background-color: #00ff66; /* Màu xanh Razer */
+  color: #000; /* Chữ đen cho nổi bật trên nền xanh */
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 5px 10px;
+  box-shadow: 0 0 10px #00ff66; /* Hiệu ứng phát sáng */
+}
+
+@keyframes electric-glow-slim {
+  0% {
+    box-shadow: 0 1px 3px rgba(0, 255, 102, 0.2);
+    border-bottom-color: rgba(0, 255, 102, 0.4);
+  }
+  50% {
+    /* Điểm sáng nhất cũng chỉ lan ra một chút */
+    box-shadow: 0 1px 8px rgba(0, 255, 102, 0.6);
+    border-bottom-color: rgba(0, 255, 102, 0.8);
+  }
+  100% {
+    box-shadow: 0 1px 3px rgba(0, 255, 102, 0.2);
+    border-bottom-color: rgba(0, 255, 102, 0.4);
+  }
+}
+
+.login-submit-btn {
+  position: relative;
+  width: 100%;
+  padding: 15px;
+  background: #050505;
+  color: #00ff66;
+  font-family: "Orbitron", sans-serif; /* Nếu bạn có font gaming */
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  border-radius: 0; /* Cắt góc vuông cho hầm hố */
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+/* Hiệu ứng quét sáng (Shimmer) khi load */
+.login-submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 102, 0.4),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+/* Lớp hạt điện tử ẩn (Glow Points) */
+.login-submit-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(0, 255, 102, 0.3) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Hiệu ứng khi di chuột vào */
+.login-submit-btn:hover {
+  color: #fff;
+  border-color: #00ff66;
+  background: #00ff66;
+  color: #000;
+  box-shadow: 0 0 40px rgba(0, 255, 102, 0.6);
+  letter-spacing: 6px; /* Chữ giãn ra thêm khi hover */
+}
+
+/* Hiệu ứng tia chớp quét qua khi hover */
+.login-submit-btn:hover::before {
+  left: 100%;
+}
+
+.login-submit-btn:hover::after {
+  opacity: 1;
+}
+
+/* Hiệu ứng nhấn nút (Impact) */
+.login-submit-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px #00ff66;
+}
+/* Thêm khoảng trống bên dưới nút Login */
+.login-submit-btn {
+  margin-bottom: 25px; /* Tăng khoảng cách xuống phía dưới */
+  /* ... giữ các code cũ của bạn ... */
+}
+
+/* Hoặc chỉnh trực tiếp vào phần footer của modal */
+.login-footer {
+  margin-top: 15px; /* Tạo khoảng cách phía trên dòng chữ */
+  text-align: center;
+}
+/* Tối ưu hiệu ứng đổi màu phần nền */
+.chroma-section {
+  transition: background-color 0.8s ease; /* Chuyển màu nền mượt mà */
+}
+
+/* TẠO HỆ THỐNG 5 MÀU RAZER CHROMA */
+:root {
+  --color-1: #ffff00; /* Xanh lá Razer */
+  --color-2: #ff0000; /* Đỏ */
+  --color-3: #0066ff; /* Xanh dương */
+  --color-4: #ff00ff; /* Tím */
+  --color-5: #00ff66; /* Vàng */
+}
+
+/* ÁP DỤNG ĐỔI MÀU CHO CẢ BÀN PHÍM VÀ OVERLAYS */
+.keyboard-container img {
+  /* Quan trọng nhất: filter: hue-rotate sẽ thay đổi màu của ảnh gốc dựa trên biến dynamic-color */
+  filter: drop-shadow(0 0 15px var(--dynamic-color, #00ff66))
+    hue-rotate(var(--hue-angle, 0deg)); /* Đổi màu ảnh gốc */
+
+  transition: filter 0.8s ease; /* Hiệu ứng mượt */
+}
+
+/* Đảm bảo overlays luôn đồng bộ màu */
+.kb-overlay {
+  opacity: 0.8; /* Tăng độ sáng overlays chút ít để nổi bật màu */
+}
+/* Smooth Scroll cho toàn trang */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- LOADING SCREEN --- */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s;
+}
+
+.loader-logo {
+  width: 100px;
+  filter: drop-shadow(0 0 10px #00ff66);
+  animation: razer-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes razer-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+    filter: brightness(0.5) drop-shadow(0 0 5px #00ff66);
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+    filter: brightness(1.2) drop-shadow(0 0 20px #00ff66);
+  }
+}
+
+/* --- BACK TO TOP BUTTON --- */
+#backToTop {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 255, 102, 0.1);
+  border: 1px solid #00ff66;
+  color: #00ff66;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+}
+
+#backToTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#backToTop:hover {
+  background: #00ff66;
+  color: #000;
+  box-shadow: 0 0 20px #00ff66;
+  transform: translateY(-5px);
+}
+@media (max-width: 768px) {
+  .bg-video {
+    width: auto;
+    height: 100vh; /* Giữ chiều cao toàn màn hình nhưng cho phép chiều ngang tự tràn */
+  }
+  .content h1 {
+    font-size: 2.5rem; /* Thu nhỏ font chữ tiêu đề trên mobile */
+  }
+}
+#stars::after,
+#stars::before {
+  animation-duration: 120s; /* thay vì 60s */
+}
+#stars::after,
+#stars::before {
+  animation-duration: 120s; /* thay vì 60s */
+}
+.keyboard-container img {
+  filter: drop-shadow(0 0 20px var(--dynamic-color))
+    drop-shadow(0 0 40px var(--dynamic-color)) hue-rotate(var(--hue-angle));
+}
+/* ===== ULTRA GLOW + 3D ===== */
+.keyboard-container {
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.keyboard-container img {
+  transition: all 0.3s ease;
+
+  filter: drop-shadow(0 0 20px var(--dynamic-color))
+    drop-shadow(0 0 60px var(--dynamic-color)) hue-rotate(var(--hue-angle));
+
+  /* 🔥 ánh sáng theo chuột */
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.15),
+    transparent 40%
+  );
+}
+.keyboard-container {
+  position: relative;
+  width: 800px; /* chỉnh theo bạn */
+  margin: 0 auto; /* căn giữa */
+}
+.kb-base {
+  width: 100%;
+  display: block;
+}
+
+.kb-overlay,
+.kb-extra {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* thêm cái này */
+  object-fit: cover; /* đảm bảo khớp */
+
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.keyboard-container {
+  filter: drop-shadow(0 0 20px #00ff66);
+}
+.keyboard-container img {
+  pointer-events: none;
+  user-select: none;
+}
+.fire-particle {
+  position: fixed;
+  pointer-events: none; /* Không cản trở việc click chuột */
+  background: #00ff66; /* Màu xanh Razer */
+  border-radius: 50%;
+  filter: blur(1px);
+  box-shadow:
+    0 0 10px #00ff66,
+    0 0 20px #00ff66;
+  z-index: 9999;
+  animation: fire-fly 0.8s ease-out forwards;
+}
+
+@keyframes fire-fly {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(0); /* Bay lên 50px và nhỏ dần */
+    opacity: 0;
+  }
+}
+.keyboard-container {
+  position: relative;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  /* Hiệu ứng nghiêng nhẹ tạo chiều sâu 3D */
+  transform: perspective(1000px) rotateX(5deg);
+  transition: transform 0.5s ease;
+}
+
+.keyboard-container:hover {
+  transform: perspective(1000px) rotateX(0deg) scale(1.02);
+}
+
+.kb-base {
+  width: 100%;
+  display: block;
+  /* Đổ bóng tầng 1: Sát cạnh bàn phím | Tầng 2: Tỏa rộng ra nền */
+  filter: drop-shadow(0 0 15px var(--dynamic-color, #00ff66))
+    drop-shadow(0 0 50px rgba(0, 255, 102, 0.2));
+}
+#preloader {
+  position: fixed;
+  inset: 0; /* Cách viết tắt cho top, left, right, bottom: 0 */
+  background: #000;
+  display: flex;
+  flex-direction: column; /* Để logo và chữ load xếp dọc */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Thêm hiệu ứng mờ dần cho body khi chưa load xong */
+body.loading {
+  overflow: hidden;
+}
+@media (max-width: 768px) {
+  .chroma-text h2 {
+    font-size: 1.8rem; /* Thu nhỏ tiêu đề trên mobile */
+    letter-spacing: 3px;
+  }
+
+  .keyboard-container {
+    width: 100%;
+    transform: none; /* Bỏ 3D trên mobile để tránh lỗi hiển thị */
+  }
+
+  /* Ẩn bớt các hạt lửa trên mobile để mượt hơn */
+  .fire-particle {
+    display: none;
+  }
+}
+.cart-nav {
+  transition: 0.3s;
+}
+
+.cart-nav:hover .cart-svg {
+  color: #00ff66;
+  filter: drop-shadow(0 0 8px #00ff66);
+}
+
+#cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #00ff66;
+  color: #000;
+  font-size: 10px;
+  font-weight: bold;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.8);
+}
+#cart-drawer {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: #111;
+  padding: 20px;
+  transition: 0.4s;
+  z-index: 9999;
+  border-left: 2px solid #00ff66;
+  color: white;
+}
+
+#cart-drawer.active {
+  right: 0;
+}
+
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 1999;
+}
+
+.cart-overlay.active {
+  display: block;
+}
+
+/* Header giỏ hàng */
+.cart-header {
+  padding: 20px;
+  border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #44d62c;
+  letter-spacing: 2px;
+}
+
+.close-drawer {
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Nút Checkout */
+.checkout-btn {
+  width: 100%;
+  background: #44d62c;
+  color: black;
+  border: none;
+  padding: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  background: #39b525;
+  box-shadow: 0 0 15px #44d62c;
+}
+/* Bảng giỏ hàng */
+
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  z-index: 1999;
+}
+.cart-overlay.active {
+  display: block;
+}
+
+/* Thông báo nhỏ khi thêm hàng */
+.toast-msg {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #44d62c;
+  color: #000;
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.5s;
+  z-index: 3000;
+}
+.toast-msg.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Nút ADD TO CART trong ảnh của bạn */
+.add-to-cart-btn {
+  background: #44d62c;
+  color: black;
+  border: none;
+  padding: 15px 40px;
+  font-weight: 1000;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+.add-to-cart-btn:hover {
+  box-shadow: 0 0 20px #44d62c;
+  transform: scale(1.05);
+}
+/* Container chứa cả Search và Cart */
+.nav-actions {
+  display: flex;
+  align-items: center; /* Căn giữa tất cả icon theo chiều dọc */
+  gap: 20px; /* Khoảng cách giữa Search và Cart */
+}
+
+/* Phần bao quanh giỏ hàng */
+.nav-cart {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Căn chỉnh lại số 0 (Badge) để không đẩy lệch icon */
+#cart-count-nav {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #00ff66;
+  color: #000;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+  padding: 2px;
+}
+
+/* Hiệu ứng hover cho Icon giỏ hàng */
+.nav-cart svg {
+  transition: 0.3s;
+  color: white;
+}
+
+.nav-cart:hover svg {
+  color: #00ff66;
+  filter: drop-shadow(0 0 5px #00ff66);
+}
+/* ============================================================
+   [1] LAYOUT CHUNG CHO TRANG CON (PRODUCT PAGE CONFIG)
+   ============================================================ */
+/* body {
+  background-color: #000;
+  overflow-x: hidden;
+} */
+
+/* Khoảng cách để không bị Navbar đè lên nội dung */
+.product-page-hero {
+  padding-top: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  gap: 50px;
+}
+
+/* ============================================================
+   [2] PRODUCT HERO (THÔNG TIN CHÍNH VÀ GIÁ)
+   ============================================================ */
+.hero-left {
+  flex: 1;
+}
+
+.category-text {
+  color: #00ff66;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.product-name {
+  font-size: 4rem;
+  margin: 20px 0;
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+}
+
+.product-desc {
+  color: #888;
+  line-height: 1.8;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.price-tag {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.main-prod-img {
+  width: 100%;
+  max-width: 550px;
+  filter: drop-shadow(0 0 40px rgba(0, 255, 102, 0.25));
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.main-prod-img:hover {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+/* ============================================================
+   [3] FEATURE GRID (BA THẺ TÍNH NĂNG)
+   ============================================================ */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 100px 10%;
+  background: linear-gradient(to bottom, #000, #0a0a0a);
+}
+
+.detail-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  padding: 50px 30px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.4s ease;
+}
+
+.detail-card:hover {
+  background: rgba(0, 255, 102, 0.05);
+  border-color: #00ff66;
+  transform: translateY(-10px);
+}
+
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.detail-card h3 {
+  color: #00ff66;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.detail-card p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* ============================================================
+   [4] TECH SPECS TABLE (BẢNG THÔNG SỐ)
+   ============================================================ */
+.tech-specs {
+  padding: 100px 15%;
+  background: #000;
+}
+
+.spec-title {
+  text-align: center;
+  color: #fff;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+}
+
+.spec-table {
+  border-top: 1px solid #333;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+  border-bottom: 1px solid #222;
+  transition: 0.3s;
+}
+
+.spec-row:hover {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.spec-row span:first-child {
+  color: #666;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.spec-row span:last-child {
+  color: #eee;
+}
+
+/* ============================================================
+   [5] RESPONSIVE (TỐI ƯU DI ĐỘNG CHO TRANG CON)
+   ============================================================ */
+@media (max-width: 992px) {
+  .product-page-hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 120px;
+  }
+
+  .product-desc {
+    margin: 0 auto 30px auto;
+  }
+
+  .product-name {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .details-grid {
+    padding: 50px 5%;
+  }
+
+  .tech-specs {
+    padding: 50px 5%;
+  }
+
+  .spec-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+/* Bảng thông số kỹ thuật kiểu Razer */
+.tech-specs {
+  padding: 80px 10%;
+  background: #050505;
+}
+
+.spec-title {
+  color: #00ff66;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  border-left: 4px solid #00ff66;
+  padding-left: 15px;
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #111;
+  transition: 0.3s;
+}
+
+.spec-row:hover {
+  background: rgba(0, 255, 102, 0.02);
+  padding-left: 10px;
+}
+
+.spec-label {
+  color: #666;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.spec-value {
+  color: #fff;
+  text-align: right;
+}
+/* Gallery & Hero Layout */
+
+.product-gallery {
+  flex: 1;
+  text-align: center;
+}
+.main-image img {
+  width: 100%;
+  max-width: 500px;
+  filter: drop-shadow(0 0 20px #00ff6644);
+}
+
+.thumb-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.thumb:hover {
+  border-color: #00ff66;
+  box-shadow: 0 0 10px #00ff66;
+}
+
+/* Tech Deep Dive Cards */
+.tech-deep-dive {
+  padding: 100px 10%;
+  background: #080808;
+}
+.tech-card {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+.tech-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.tech-text h2 {
+  color: #00ff66;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+.tech-text p {
+  color: #888;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+.tech-img img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
+}
+/* --- SECTION HERO TRANG CHI TIẾT --- */
+
+/* --- CẤU TRÚC GALLERY (BÊN TRÁI) --- */
+.product-gallery {
+  /* TĂNG TỪ 1 LÊN 1.5 ĐỂ CHIẾM NHIỀU DIỆN TÍCH HƠN CHỮ */
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KHỐI CHỨA ẢNH CHÍNH */
+.main-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Thêm hiệu ứng phát sáng nhẹ cho ảnh thêm ngầu */
+  filter: drop-shadow(0 0 30px rgba(0, 255, 102, 0.1));
+}
+
+/* ẢNH CHÍNH */
+#current-img {
+  /* CHO PHÉP ẢNH TO HẾT CỠ CỦA KHỐI CHỨA */
+  width: 100%;
+  /* TĂNG KÍCH THƯỚC TỐI ĐA (Ví dụ: từ 500px lên 700px) */
+  max-width: 700px;
+  height: auto; /* Giữ nguyên tỷ lệ ảnh */
+  object-fit: contain;
+  transition: opacity 0.3s ease; /* Hiệu ứng mượt khi đổi ảnh */
+}
+
+/* DANH SÁCH ẢNH NHỎ (THUMBNAILS) */
+.thumb-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px; /* Tăng khoảng cách với ảnh chính */
+}
+
+.thumb:hover,
+.thumb.active {
+  border-color: #00ff66; /* Viền xanh Razer khi chọn */
+  opacity: 1; /* Hiện rõ khi chọn */
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+}
+
+/* --- THÔNG TIN SẢN PHẨM (BÊN PHẢI) --- */
+.product-info-short {
+  /* GIỮ NGUYÊN HOẶC GIẢM NHẸ TỶ LỆ */
+  flex: 1;
+  padding-left: 20px;
+}
+
+/* Điều chỉnh lại kích thước chữ cho cân đối với ảnh to */
+.product-info-short h1 {
+  font-size: 3.5rem; /* Tăng kích thước tên sản phẩm */
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.product-info-short .price {
+  font-size: 2.5rem; /* Tăng kích thước giá */
+  color: #00ff66;
+  margin: 25px 0;
+}
+/* Lớp phủ đen khi mở giỏ hàng */
+#cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 998;
+}
+
+#cart-overlay.active {
+  display: block;
+}
+
+/* Thân giỏ hàng trượt */
+#cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -400px; /* Ẩn đi mặc định */
+  width: 400px;
+  height: 100%;
+  background: #000;
+  border-left: 2px solid #44d62c;
+  transition: 0.4s ease-in-out;
+  z-index: 999;
+  padding: 20px;
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#cart-drawer.active {
+  right: 0; /* Trượt vào khi có class active */
+}
+#cart-count,
+#cart-count-nav {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+#cart-count.pop,
+#cart-count-nav.pop {
+  transform: scale(1.4);
+  color: #44d62c;
+  font-weight: bold;
+}
+.fire-particle {
+  position: fixed;
+  background: #44d62c; /* Màu xanh Razer */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 10px #44d62c;
+  animation: fire-fly 0.8s linear forwards;
+}
+
+@keyframes fire-fly {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px) scale(0);
+    opacity: 0;
+  }
+}
+/* Làm cho nút màu trắng nổi bật hơn trên nền đen */
+.color-dot.white {
+  background-color: #ffffff;
+  border: 2px solid #555;
+}
+
+/* Nút màu đen cần viền nhẹ để không bị chìm hẳn */
+.color-dot.black {
+  background-color: #000000;
+  border: 2px solid #333;
+}
+
+/* Hiệu ứng khi được chọn */
+.color-dot.active {
+  border-color: #00ff66 !important; /* Xanh Razer */
+  box-shadow: 0 0 10px #00ff66;
+}
+.product-detail-hero {
+  display: flex;
+  align-items: center;
+  padding: 120px 5% 80px;
+  gap: 50px;
+  background-color: #000;
+}
+.product-gallery {
+  flex: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+#current-img {
+  width: 100%;
+  max-width: 750px;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 0 20px rgba(0, 255, 102, 0.2));
+}
+.thumb-list {
+  display: flex;
+  gap: 15px;
+}
+.thumb {
+  width: 110px;
+  height: 110px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  object-fit: cover;
+  opacity: 0.6;
+}
+.thumb:hover,
+.thumb.active {
+  border-color: #00ff66;
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+}
+.product-info-short {
+  flex: 1;
+  color: #fff;
+}
+.color-selection {
+  margin: 30px 0;
+}
+#color-name {
+  color: #00ff66;
+  font-weight: bold;
+}
+.color-options {
+  display: flex;
+  gap: 15px;
+}
+.color-dot {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #333;
+  transition: 0.3s all ease;
+}
+.color-dot.black {
+  background-color: #000;
+}
+.color-dot.white {
+  background-color: #fff;
+  border-color: #fff;
+}
+.color-dot.active {
+  border-color: #00ff66;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #00ff6688;
+}
+.price {
+  font-size: 2.5rem;
+  color: #00ff66;
+  margin: 30px 0;
+}
+.buy-now-btn {
+  background-color: #00ff66;
+  color: #000;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Style cho Giỏ hàng trượt */
+/* ============================================================
+   [1] LAYOUT GIỎ HÀNG (CART DRAWER & OVERLAY)
+   ============================================================ */
+#cart-drawer {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: linear-gradient(180deg, #000, #0a0a0a);
+  padding: 20px;
+  transition: 0.4s ease-in-out;
+  z-index: 9999;
+  border-left: 2px solid #00ff66;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -5px 0 20px rgba(0, 255, 102, 0.2);
+}
+
+#cart-drawer.active {
+  right: 0;
+}
+
+#cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none;
+  z-index: 998;
+}
+
+#cart-overlay.active {
+  display: block;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 20px;
+  border-bottom: 1px solid #222;
+  color: #00ff66;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   [2] CHI TIẾT SẢN PHẨM TRONG GIỎ (CART ITEMS)
+   ============================================================ */
+#cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111;
+  border: 1px solid #00ff66;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin-bottom: 12px;
+  gap: 14px;
+  transition: 0.3s;
+  box-sizing: border-box;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+}
+
+/* Cột 1: Tên và giá đơn vị */
+.item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.item-name {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 13px;
+  margin: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cart-item button,
+.quantity-controls button {
+  width: 30px !important; /* Chiều rộng nhỏ lại (gốc thường là 40-50px) */
+  height: 25px !important; /* Chiều cao thấp xuống */
+  padding: 0 !important; /* Xóa bỏ khoảng cách thừa bên trong */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px; /* Chỉnh kích thước dấu + và - cho nhỏ lại */
+  line-height: 1;
+}
+
+/* Nếu bạn muốn khoảng cách giữa nút và số lượng thắt chặt hơn */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Khoảng cách giữa nút và con số */
+}
+
+.item-unit-price {
+  color: #00ff66;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* Cột 2: Bộ nút tăng giảm */
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #00ff66;
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.item-controls button {
+  background: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0 4px;
+}
+
+.qty-num {
+  color: #fff;
+  min-width: 18px;
+  text-align: center;
+  font-size: 13px;
+}
+
+/* Cột 3: Tổng tiền (Cố định để thẳng hàng) */
+.item-total-price {
+  color: #00ff66;
+  font-weight: bold;
+  min-width: 75px;
+  text-align: right;
+  font-size: 14px;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* ============================================================
+   [3] VOUCHER & FOOTER (TỔNG TIỀN)
+   ============================================================ */
+.cart-footer {
+  padding: 20px 0 10px;
+  border-top: 1px solid #222;
+}
+
+.voucher-box {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.voucher-box input {
+  flex: 1;
+  padding: 10px;
+  background: #eef2ff; /* Màu xanh nhạt dễ nhìn */
+  border: none;
+  color: #000;
+  outline: none;
+  font-size: 13px;
+}
+
+.voucher-box button {
+  background: #00ff66;
+  color: #000;
+  border: none;
+  padding: 0 15px;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  color: #888;
+  font-size: 14px;
+}
+
+.total-final {
+  display: flex;
+  justify-content: space-between;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-top: 1px solid #222;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.total-final span:last-child {
+  color: #00ff66;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #00ff66;
+  color: #000;
+  border: none;
+  padding: 15px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s;
+}
+
+.checkout-btn:hover {
+  box-shadow: 0 0 20px #00ff66;
+  transform: translateY(-2px);
+}
+/* Layout chuẩn cho các Section Showcase */
+.showcase-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 100px 10%;
+  gap: 50px;
+}
+
+@media (max-width: 992px) {
+  .showcase-section {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+/* Container chung cho hành động điều hướng */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-left: 20px;
+}
+
+/* Style cho các thẻ chứa icon */
+.search-icon,
+.nav-cart {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  color: #fff; /* Màu mặc định trắng */
+}
+
+/* CSS cho các icon SVG (Search và Cart) */
+.nav-actions svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+/* Hiệu ứng Hover: Đổi màu xanh Razer và phát sáng */
+.search-icon:hover,
+.nav-cart:hover {
+  color: #00ff66;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.8));
+}
+
+/* Badge số lượng trên Giỏ hàng */
+.cart-icon-wrapper {
+  position: relative;
+}
+
+#cart-count-nav {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #00ff66;
+  color: #000;
+  font-size: 11px;
+  font-weight: bold;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+}
+.social-icons {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #888; /* Màu xám mặc định */
+  font-size: 20px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+/* Hiệu ứng hover cho từng mạng xã hội */
+.social-icons a:hover {
+  color: #00ff66;
+  transform: translateY(-3px);
+}
+.cart-header button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cart-header button:hover {
+  color: #ff4444; /* Đổi màu đỏ khi đóng */
+  transform: rotate(90deg);
+}
+.social-icons a {
+  color: #44d62c; /* Màu xanh Razer */
+  font-size: 20px;
+  margin: 0 15px;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: white;
+  transform: scale(1.2);
+}
+.tech-grid-section {
+    width: 100%;
+    padding: 80px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn tiêu đề "THE UNFAIR ADVANTAGE" vào giữa */
+}
+
+.tech-grid {
+    display: grid;
+    /* Tự động điều chỉnh số cột, căn giữa toàn bộ grid */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px; /* Giới hạn độ rộng để không bị loãng trên màn hình lớn */
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.tech-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(68, 214, 44, 0.2);
+    padding: 40px 30px;
+    border-radius: 15px;
+    text-align: center; /* Căn giữa icon, h3 và p bên trong card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s;
+}

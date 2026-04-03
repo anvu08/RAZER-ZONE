@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razer Mice - Precision Perfection</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="product-menu.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="preloader"></div>
+    <div id="fire-container"></div>
+
+    <header class="navbar">
+      <div class="logo"><img src="img/RAZFF.png" alt="Logo" /></div>
+      <nav class="nav-container">
+        <ul id="menu">
+          <li class="nav-item" onclick="changeTab(this, 'index.html')">Home</li>
+          <li
+            class="nav-item active"
+            onclick="changeTab(this, 'product-menu.html')"
+          >
+            Product
+          </li>
+          <li class="nav-item" onclick="changeTab(this, 'contact.html')">
+            Contact
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="product-container">
+      <div class="slider" style="--quantity: 5">
+        <div class="item" style="--position: 1">
+          <img src="img/pad.jpg" alt="Mousepad" />
+          <div class="content"><h1>MOUSEPAD</h1></div>
+        </div>
+        <div class="item" style="--position: 2">
+          <img src="img/chuot.jpg" alt="Mouse" />
+          <div class="content"><h1>MOUSE</h1></div>
+        </div>
+        <div class="item" style="--position: 3">
+          <img src="img/banphim.jpg" alt="Keyboard" />
+          <div class="content"><h1>KEYBOARD</h1></div>
+        </div>
+        <div class="item" style="--position: 4">
+          <img src="img/laptop.jpg" alt="Laptop" />
+          <div class="content"><h1>LAPTOP</h1></div>
+        </div>
+        <div class="item" style="--position: 5">
+          <img src="img/headset.jpg" alt="Headset" />s
+          <div class="content"><h1>HEADSET</h1></div>
+        </div>
+      </div>
+    </main>
+
+    <section class="tech-grid-section reveal">
+      <h2 class="section-title">THE UNFAIR ADVANTAGE</h2>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon">🎯</div>
+          <h3>Focus Pro 30K</h3>
+          <p>
+            Optical Sensor: Độ chính xác tuyệt đối trên mọi bề mặt, kể cả kính.
+          </p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">⚡</div>
+          <h3>HyperPolling</h3>
+          <p>
+            8000Hz Technology: Tốc độ phản hồi nhanh gấp 8 lần chuột thường.
+          </p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🖱️</div>
+          <h3>Optical Gen-3</h3>
+          <p>
+            Mouse Switches: Độ bền 90 triệu lần nhấn, không lo lỗi double-click.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="exploded-view-section reveal">
+      <div class="exploded-container">
+        <div class="exploded-text">
+          <h2 class="section-title">ENGINEERED TO WIN</h2>
+          <p>
+            Mọi linh kiện đều được tối ưu cho hiệu năng đỉnh cao và trọng lượng
+            siêu nhẹ.
+          </p>
+        </div>
+        <div class="exploded-image-wrapper">
+          <img
+            src="img/anh9.jpg"
+            alt="Razer Viper V3 Pro Exploded View"
+            class="floating-hardware"
+          />
+          <div class="hotspot hs-1"><span>Sensor</span></div>
+          <div class="hotspot hs-2"><span>Battery</span></div>
+          <div class="hotspot hs-3"><span>Switches</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section reveal">
+      <h2 class="section-title">TRUSTED BY PROS</h2>
+      <div class="reviews-container">
+        <div class="review-card">
+          <div class="card-glow"></div>
+          <div class="pro-header">
+            <div class="pro-img"><img src="img/faker.jpg" alt="Faker" /></div>
+            <div class="pro-meta">
+              <span class="pro-name">FAKER</span>
+              <span class="pro-team">T1 | LEAGUE OF LEGENDS</span>
+            </div>
+            <div class="verified-badge">✔</div>
+          </div>
+          <div class="pro-body">
+            <p class="quote">
+              "The precision is unmatched. It feels like an natural extension of
+              my hand during the most intense teamfights."
+            </p>
+          </div>
+          <div class="card-footer">
+            <span class="gear-used">Using: Razer DeathAdder V3 Pro</span>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="card-glow"></div>
+          <div class="pro-header">
+            <div class="pro-img"><img src="img/s1mple.jpg" alt="S1mple" /></div>
+            <div class="pro-meta">
+              <span class="pro-name">S1MPLE</span>
+              <span class="pro-team">NAVI | CS2</span>
+            </div>
+            <div class="verified-badge">✔</div>
+          </div>
+          <div class="pro-body">
+            <p class="quote">
+              "In CS2, every millisecond counts. This mouse gives me the speed
+              and reliability to hit every flick shot."
+            </p>
+          </div>
+          <div class="card-footer">
+            <span class="gear-used">Using: Razer Viper V3 Pro</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="razer-footer">
+      <div class="footer-content">
+        <p>© 2026 Razer Inc. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Legal Terms</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

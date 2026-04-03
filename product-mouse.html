@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Razer Mice - Precision Perfection</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="product.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo">
+        <img src="img/RAZFF.png" alt="Logo" />
+      </div>
+      <nav class="nav-container">
+        <ul id="menu">
+          <li class="nav-item" onclick="window.location.href = 'index.html'">
+            Home
+          </li>
+          <li class="nav-item active">VIPER V3 PRO</li>
+          <li class="nav-item" onclick="window.location.href = 'contact.html'">
+            Contact
+          </li>
+        </ul>
+
+        <div class="nav-actions">
+          <div class="search-wrapper">
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search Razer..."
+            />
+            <div class="search-icon" onclick="toggleSearch()">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+          </div>
+
+          <div class="nav-cart" onclick="toggleCart()">
+            <div class="cart-icon-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+              <span id="cart-count-nav">0</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="product-page-hero reveal fade-up">
+      <div class="hero-left">
+        <span class="category-text">Gaming Mice</span>
+        <h1 class="product-name">RAZER VIPER V3 PRO</h1>
+        <p class="product-desc">
+          Được thiết kế cùng các chuyên gia Esports hàng đầu thế giới. Trọng
+          lượng siêu nhẹ, cảm biến chính xác nhất thế giới hiện nay.
+        </p>
+        <div class="price-tag">$159.99</div>
+
+        <button
+          class="buy-now-btn"
+          data-name="Razer Viper V3 Pro"
+          data-price="159.99"
+          onclick="handleAddToCart(this)"
+          style="width: 200px"
+        >
+          ADD TO CART
+        </button>
+      </div>
+      <div class="hero-right">
+        <img
+          src="img/anh4.jpg"
+          alt="Viper V3 Pro"
+          class="main-prod-img floating-img"
+        />
+      </div>
+    </main>
+
+    <div id="cart-drawer">
+      <div class="cart-header">
+        <h2>SHOPPING CART</h2>
+        <button onclick="toggleCart()" class="close-drawer">✖</button>
+      </div>
+
+      <div id="cart-items"></div>
+
+      <div class="cart-footer">
+        <div id="voucher-message"></div>
+        <div class="voucher-box">
+          <input
+            type="text"
+            id="voucher-input"
+            placeholder="Enter voucher code"
+          />
+          <button onclick="applyVoucher()">APPLY</button>
+        </div>
+
+        <div class="cart-summary">
+          <div class="summary-line">
+            <span>Discount:</span>
+            <span class="discount-line"
+              >-$<span id="discount-amount">0.00</span></span
+            >
+          </div>
+          <div class="summary-line total-final">
+            <span>Total:</span>
+            <span>$<span id="cart-total">0.00</span></span>
+          </div>
+        </div>
+
+        <button class="checkout-btn" onclick="checkout()">
+          PROCEED TO CHECKOUT
+        </button>
+      </div>
+    </div>
+
+    <div id="cart-overlay" onclick="toggleCart()"></div>
+
+    <div class="cursor"></div>
+    <div id="fire-container"></div>
+
+<footer class="razer-footer">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <img src="img/RAZFF.png" alt="Razer Logo" />
+        </div>
+        <ul class="footer-links">
+          <li><a href="product-menu.html">Products</a></li>
+          <li><a href="contact.html">Support</a></li>
+          <li><a href="community.html">Community</a></li>
+          <li><a href="store-locator.html">Store Locator</a></li>
+        </ul>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/razer" target="_blank">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com/Razer" target="_blank">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/razer" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com/razer" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Copyright © 2024 Razer Inc. All rights reserved.</p>
+        <div class="footer-line"></div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

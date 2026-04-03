@@ -1,0 +1,619 @@
+/* ============================================================
+    1. SETUP CHUNG & FONTS
+============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+:root {
+  --razer-green: #00ff66;
+  --bg-dark: #000000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-dark);
+  font-family: "Orbitron", sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+    2. NAVBAR (GIỮ NGUYÊN PHONG CÁCH CỦA BẠN)
+============================================================ */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 900px;
+  border-radius: 20px;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 255, 102, 0.5);
+  animation: electric-glow-slim 2s infinite alternate;
+}
+
+#menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-item {
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--razer-green);
+  text-shadow: 0 0 10px var(--razer-green);
+}
+
+/* ============================================================
+    3. BODY: 3D SLIDER (FIX LỖI VĂNG HÌNH & LUÔN XOAY)
+============================================================ */
+.product-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px; /* Tạo độ sâu không gian */
+  background: radial-gradient(circle at center, #0a1f0a 0%, #000 75%);
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  width: 220px;
+  height: 320px;
+  transform-style: preserve-3d;
+  animation: autoRun 25s linear infinite; /* Chạy liên tục */
+}
+
+/* KHÔNG CÓ đoạn animation-play-state: paused ở đây để vòng xoay không dừng */
+
+@keyframes autoRun {
+  from {
+    transform: rotateX(-5deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-5deg) rotateY(360deg);
+  }
+}
+
+.slider .item {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  /* TranslateZ(400px) giúp các tấm hình nằm gọn trong màn hình */
+  transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+    translateZ(400px);
+}
+
+.slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Giữ dáng sản phẩm chuẩn */
+  border-radius: 12px;
+  border: 1px solid rgba(0, 255, 102, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+  -webkit-box-reflect: below 10px
+    linear-gradient(transparent, transparent, rgba(0, 255, 102, 0.2));
+}
+
+.slider .item:hover img {
+  border-color: var(--razer-green);
+  box-shadow: 0 0 30px var(--razer-green);
+  transform: scale(1.1); /* Chỉ phóng to, không dừng xoay */
+}
+
+.slider .item .content h1 {
+  position: absolute;
+  top: 105%;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: var(--razer-green);
+  text-shadow: 0 0 8px var(--razer-green);
+}
+
+/* ============================================================
+    4. FOOTER (TỐI GIẢN)
+============================================================ */
+.razer-footer {
+  background: #080808;
+  padding: 40px 0;
+  border-top: 1px solid #111;
+  text-align: center;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 0;
+}
+
+.footer-links a {
+  color: #666;
+  text-decoration: none;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--razer-green);
+}
+
+/* Glow cho Navbar */
+@keyframes electric-glow-slim {
+  from {
+    box-shadow: 0 1px 4px rgba(0, 255, 102, 0.2);
+  }
+  to {
+    box-shadow: 0 1px 10px rgba(0, 255, 102, 0.5);
+  }
+}
+/* Container: Tạo không gian rộng hơn */
+.product-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2500px; /* Tăng perspective để chiều sâu rõ rệt hơn */
+  background: radial-gradient(circle at center, #0a1f0a 0%, #000 80%);
+  overflow: hidden;
+}
+
+.slider {
+  position: relative;
+  width: 220px; /* Chiều rộng của 1 card */
+  height: 320px;
+  transform-style: preserve-3d;
+  /* Giảm độ nghiêng rotateX để card đứng thẳng hơn một chút, dễ nhìn ảnh hơn */
+  transform: rotateX(-5deg);
+  animation: autoRun 30s linear infinite;
+}
+
+@keyframes autoRun {
+  from {
+    transform: rotateX(-5deg) rotateY(0deg);
+  }
+  to {
+    transform: rotateX(-5deg) rotateY(360deg);
+  }
+}
+
+.slider .item {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  /* QUAN TRỌNG: Tăng translateZ lên 500px hoặc 600px để các card giãn cách nhau ra */
+  transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity))))
+    translateZ(550px);
+}
+
+.slider .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Hoặc contain nếu ảnh của bạn có nền sẵn */
+  border-radius: 15px;
+  border: 1px solid rgba(0, 255, 102, 0.4);
+  background: #000;
+  transition: 0.5s ease;
+  /* Hiệu ứng bóng gương */
+  -webkit-box-reflect: below 15px
+    linear-gradient(transparent, transparent, rgba(0, 255, 102, 0.15));
+}
+
+/* Hiệu ứng khi lướt qua: Sáng rực lên nhưng không dừng xoay */
+.slider .item:hover img {
+  border-color: #00ff66;
+  box-shadow: 0 0 40px rgba(0, 255, 102, 0.6);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.slider .item .content h1 {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: #00ff66;
+  text-shadow: 0 0 10px #00ff66;
+  margin-top: 25px;
+  letter-spacing: 2px;
+}
+/* Container chung cho các Section */
+.specs-section,
+.reviews-section {
+  padding: 80px 10%;
+  text-align: center;
+}
+
+.section-title {
+  font-family: "Orbitron", sans-serif;
+  color: var(--razer-green);
+  font-size: 2rem;
+  margin-bottom: 50px;
+  letter-spacing: 5px;
+  text-shadow: 0 0 15px rgba(0, 255, 102, 0.5);
+}
+
+/* --- TECH SPECS GRID --- */
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.spec-card {
+  background: rgba(20, 20, 20, 0.8);
+  border: 1px solid #111;
+  padding: 30px;
+  border-radius: 10px;
+  transition: 0.4s;
+}
+
+.spec-card:hover {
+  border-color: var(--razer-green);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 255, 102, 0.1);
+}
+
+.spec-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+.spec-card h3 {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.spec-card p {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+.spec-detail {
+  color: var(--razer-green);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+/* --- PRO REVIEWS --- */
+.reviews-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  max-width: 450px;
+  background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
+  padding: 40px;
+  border-left: 4px solid var(--razer-green);
+  text-align: left;
+  position: relative;
+}
+
+.quote {
+  font-family: "Orbitron", sans-serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #eee;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.pro-info {
+  display: flex;
+  flex-direction: column;
+}
+.pro-name {
+  color: var(--razer-green);
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.pro-team {
+  color: #555;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+/* Hiệu ứng Reveal (đã có trong script.js của bạn) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 1s all ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Container Reviews */
+.reviews-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  padding-top: 50px;
+}
+
+/* Card Review Phong cách Razer Cyberpunk */
+.review-card {
+  position: relative;
+  width: 400px;
+  background: rgba(10, 10, 10, 0.8);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.review-card:hover {
+  transform: translateY(-15px) scale(1.02);
+  border-color: var(--razer-green);
+  box-shadow: 0 0 40px rgba(0, 255, 102, 0.2);
+}
+
+/* Hiệu ứng tia sáng quét qua Card khi Hover */
+.card-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 102, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+.review-card:hover .card-glow {
+  left: 100%;
+}
+
+/* Header: Ảnh và Tên */
+.pro-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.pro-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid var(--razer-green);
+  overflow: hidden;
+  box-shadow: 0 0 15px var(--razer-green);
+}
+
+.pro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pro-meta {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.pro-name {
+  display: block;
+  font-family: "Orbitron", sans-serif;
+  font-weight: bold;
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
+.pro-team {
+  font-size: 0.7rem;
+  color: var(--razer-green);
+  opacity: 0.8;
+}
+
+.verified-badge {
+  color: var(--razer-green);
+  font-size: 1.2rem;
+}
+
+/* Nội dung Quote */
+.pro-body {
+  text-align: left;
+  min-height: 100px;
+}
+
+.quote {
+  font-family: "Roboto", sans-serif; /* Chữ review nên dùng Roboto cho dễ đọc */
+  color: #ccc;
+  font-style: italic;
+  line-height: 1.6;
+  position: relative;
+}
+
+.quote::before {
+  content: '"';
+  font-family: "Orbitron", sans-serif;
+  font-size: 4rem;
+  color: var(--razer-green);
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  opacity: 0.2;
+}
+
+/* Footer Card */
+.card-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+}
+
+.gear-used {
+  font-size: 0.7rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* --- TECH GRID --- */
+.tech-grid-section {
+  padding: 100px 10%;
+  background: linear-gradient(to bottom, #000, #050505);
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.tech-card {
+  background: rgba(10, 10, 10, 0.5);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  padding: 40px 20px;
+  border-radius: 15px;
+  text-align: center;
+  transition: 0.4s;
+  backdrop-filter: blur(5px);
+}
+
+.tech-card:hover {
+  border-color: var(--razer-green);
+  transform: translateY(-10px);
+  background: rgba(0, 255, 102, 0.05);
+}
+
+.tech-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+.tech-card h3 {
+  font-family: "Orbitron", sans-serif;
+  color: #fff;
+  margin-bottom: 15px;
+}
+.tech-card p {
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* --- EXPLODED VIEW --- */
+.exploded-view-section {
+  padding: 100px 0;
+  background: #000;
+  overflow: hidden;
+}
+
+.exploded-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.exploded-image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 50px;
+}
+
+.floating-hardware {
+  width: 100%;
+  filter: drop-shadow(0 0 30px rgba(0, 255, 102, 0.2));
+  animation: floatAnim 4s ease-in-out infinite;
+}
+
+/* Các điểm chú thích bay lơ lửng */
+.hotspot {
+  position: absolute;
+  background: rgba(0, 255, 102, 0.8);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #00ff66;
+}
+
+.hotspot span {
+  position: absolute;
+  left: 20px;
+  top: -5px;
+  color: #fff;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.hs-1 {
+  top: 45%;
+  left: 60%;
+}
+.hs-2 {
+  bottom: 30%;
+  right: 70%;
+  top: 51%;
+}
+.hs-3 {
+  top: 50%;
+  right: 26%;
+}
+
+@keyframes floatAnim {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Đảm bảo code này có trong CSS của bạn */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s all ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

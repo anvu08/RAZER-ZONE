@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Razer Style</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><img src="img/RAZFF.png" alt="Logo" /></div>
+      <nav class="nav-container">
+        <ul id="menu">
+          <li class="nav-item" onclick="changeTab(this, 'index.html')">Home</li>
+          <li class="nav-item" onclick="changeTab(this, 'product-menu.html')">
+            Product
+          </li>
+          <li class="nav-item active" onclick="changeTab(this, 'contact.html')">
+            Contact
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="contact-container reveal fade-up">
+      <div class="contact-box">
+        <div class="contact-info">
+          <h2>GET IN TOUCH</h2>
+          <p>
+            Have a question or need technical support? Our team is ready to help
+            24/7.
+          </p>
+
+          <div class="info-item">
+            <span class="icon">📍</span>
+            <span>9 Pasteur, Thanh Hoa, Viet Nam</span>
+          </div>
+          <div class="info-item">
+            <span class="icon">📧</span>
+            <span>support@razer-clone.com</span>
+          </div>
+          <div class="info-item">
+            <span class="icon">📞</span>
+            <span>+84 916 237 643 </span>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="contact-form">
+            <div class="input-group">
+              <input type="text" required />
+              <label>Your Name</label>
+            </div>
+            <div class="input-group">
+              <input type="email" required />
+              <label>Email Address</label>
+            </div>
+            <div class="input-group">
+              <textarea required rows="4"></textarea>
+              <label>Message</label>
+            </div>
+            <button type="submit" class="send-btn">
+              <span>SEND MESSAGE</span>
+              <div class="btn-glow"></div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <div class="cursor"></div>
+    <div id="fire-container"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

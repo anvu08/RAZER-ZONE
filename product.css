@@ -1,0 +1,388 @@
+/* ============================================================
+   [1] LAYOUT CHUNG CHO TRANG CON (PRODUCT PAGE CONFIG)
+   ============================================================ */
+body {
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+/* Khoảng cách để không bị Navbar đè lên nội dung */
+.product-page-hero {
+  padding-top: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  padding-left: 10%;
+  padding-right: 10%;
+  gap: 50px;
+}
+
+/* ============================================================
+   [2] PRODUCT HERO (THÔNG TIN CHÍNH VÀ GIÁ)
+   ============================================================ */
+.hero-left {
+  flex: 1;
+}
+
+.category-text {
+  color: #00ff66;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.product-name {
+  font-size: 4rem;
+  margin: 20px 0;
+  line-height: 1.1;
+  text-shadow: 0 0 20px rgba(0, 255, 102, 0.2);
+}
+
+.product-desc {
+  color: #888;
+  line-height: 1.8;
+  max-width: 500px;
+  margin-bottom: 30px;
+}
+
+.price-tag {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #fff;
+}
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.main-prod-img {
+  width: 100%;
+  max-width: 550px;
+  filter: drop-shadow(0 0 40px rgba(0, 255, 102, 0.25));
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.main-prod-img:hover {
+  transform: scale(1.05) rotate(-3deg);
+}
+
+/* ============================================================
+   [3] FEATURE GRID (BA THẺ TÍNH NĂNG)
+   ============================================================ */
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 100px 10%;
+  background: linear-gradient(to bottom, #000, #0a0a0a);
+}
+
+.detail-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 255, 102, 0.1);
+  padding: 50px 30px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.4s ease;
+}
+
+.detail-card:hover {
+  background: rgba(0, 255, 102, 0.05);
+  border-color: #00ff66;
+  transform: translateY(-10px);
+}
+
+.card-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.detail-card h3 {
+  color: #00ff66;
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+}
+
+.detail-card p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* ============================================================
+   [4] TECH SPECS TABLE (BẢNG THÔNG SỐ)
+   ============================================================ */
+.tech-specs {
+  padding: 100px 15%;
+  background: #000;
+}
+
+.spec-title {
+  text-align: center;
+  color: #fff;
+  letter-spacing: 5px;
+  margin-bottom: 60px;
+}
+
+.spec-table {
+  border-top: 1px solid #333;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 0;
+  border-bottom: 1px solid #222;
+  transition: 0.3s;
+}
+
+.spec-row:hover {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+.spec-row span:first-child {
+  color: #666;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.spec-row span:last-child {
+  color: #eee;
+}
+
+/* ============================================================
+   [5] RESPONSIVE (TỐI ƯU DI ĐỘNG CHO TRANG CON)
+   ============================================================ */
+@media (max-width: 992px) {
+  .product-page-hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 120px;
+  }
+
+  .product-desc {
+    margin: 0 auto 30px auto;
+  }
+
+  .product-name {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .details-grid {
+    padding: 50px 5%;
+  }
+
+  .tech-specs {
+    padding: 50px 5%;
+  }
+
+  .spec-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+/* Bảng thông số kỹ thuật kiểu Razer */
+.tech-specs {
+  padding: 80px 10%;
+  background: #050505;
+}
+
+.spec-title {
+  color: #00ff66;
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+  border-left: 4px solid #00ff66;
+  padding-left: 15px;
+}
+
+.spec-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+  border-bottom: 1px solid #111;
+  transition: 0.3s;
+}
+
+.spec-row:hover {
+  background: rgba(0, 255, 102, 0.02);
+  padding-left: 10px;
+}
+
+.spec-label {
+  color: #666;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.spec-value {
+  color: #fff;
+  text-align: right;
+}
+/* Gallery & Hero Layout */
+.product-detail-hero {
+  display: flex;
+  padding: 150px 10% 80px;
+  gap: 50px;
+  background: #000;
+}
+
+.product-gallery {
+  flex: 1;
+  text-align: center;
+}
+.main-image img {
+  width: 100%;
+  max-width: 500px;
+  filter: drop-shadow(0 0 20px #00ff6644);
+}
+
+.thumb-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.thumb {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.thumb:hover {
+  border-color: #00ff66;
+  box-shadow: 0 0 10px #00ff66;
+}
+
+/* Tech Deep Dive Cards */
+.tech-deep-dive {
+  padding: 100px 10%;
+  background: #080808;
+}
+.tech-card {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 100px;
+}
+.tech-card.reverse {
+  flex-direction: row-reverse;
+}
+
+.tech-text h2 {
+  color: #00ff66;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+.tech-text p {
+  color: #888;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+.tech-img img {
+  width: 100%;
+  max-width: 450px;
+  border-radius: 10px;
+}
+/* --- SECTION HERO TRANG CHI TIẾT --- */
+.product-detail-hero {
+  display: flex;
+  align-items: center; /* Căn giữa nội dung theo chiều dọc */
+  padding: 150px 7% 100px; /* Giảm padding ngang để lấy thêm khoảng trống */
+  gap: 40px; /* Khoảng cách giữa ảnh và chữ */
+  background: #000;
+  min-height: 80vh; /* Đảm bảo chiều cao đủ lớn */
+}
+
+/* --- CẤU TRÚC GALLERY (BÊN TRÁI) --- */
+.product-gallery {
+  /* TĂNG TỪ 1 LÊN 1.5 ĐỂ CHIẾM NHIỀU DIỆN TÍCH HƠN CHỮ */
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* KHỐI CHỨA ẢNH CHÍNH */
+.main-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Thêm hiệu ứng phát sáng nhẹ cho ảnh thêm ngầu */
+  filter: drop-shadow(0 0 30px rgba(0, 255, 102, 0.1));
+}
+
+/* ẢNH CHÍNH */
+#current-img {
+  /* CHO PHÉP ẢNH TO HẾT CỠ CỦA KHỐI CHỨA */
+  width: 100%;
+  /* TĂNG KÍCH THƯỚC TỐI ĐA (Ví dụ: từ 500px lên 700px) */
+  max-width: 700px;
+  height: auto; /* Giữ nguyên tỷ lệ ảnh */
+  object-fit: contain;
+  transition: opacity 0.3s ease; /* Hiệu ứng mượt khi đổi ảnh */
+}
+
+/* DANH SÁCH ẢNH NHỎ (THUMBNAILS) */
+.thumb-list {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px; /* Tăng khoảng cách với ảnh chính */
+}
+
+.thumb {
+  width: 90px; /* Tăng nhẹ kích thước ảnh nhỏ */
+  height: 90px;
+  border: 1px solid #333;
+  border-radius: 4px; /* Bo góc nhẹ */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  object-fit: cover;
+  opacity: 0.6; /* Làm mờ ảnh không được chọn */
+}
+
+.thumb:hover,
+.thumb.active {
+  border-color: #00ff66; /* Viền xanh Razer khi chọn */
+  opacity: 1; /* Hiện rõ khi chọn */
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+}
+
+/* --- THÔNG TIN SẢN PHẨM (BÊN PHẢI) --- */
+.product-info-short {
+  /* GIỮ NGUYÊN HOẶC GIẢM NHẸ TỶ LỆ */
+  flex: 1;
+  padding-left: 20px;
+}
+
+/* Điều chỉnh lại kích thước chữ cho cân đối với ảnh to */
+.product-info-short h1 {
+  font-size: 3.5rem; /* Tăng kích thước tên sản phẩm */
+  color: #fff;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.product-info-short .price {
+  font-size: 2.5rem; /* Tăng kích thước giá */
+  color: #00ff66;
+  margin: 25px 0;
+}
